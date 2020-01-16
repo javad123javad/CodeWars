@@ -30,13 +30,34 @@ std::string spinWords(const std::string& str)
         sRes += " ";
         std::cout << sRes << std::endl;
     }
+    const auto strBegin = sRes.find_first_not_of(" \t");
+    if (strBegin == std::string::npos)
+        return ""; // no content
+    const auto strEnd = sRes.find_last_not_of(" \t");
+    const auto strRange = strEnd - strBegin + 1;
+
+    return sRes.substr(strBegin, strRange);
     return sRes;
 } 
+std::string spinWords2(const std::string& str)
+{
+    std::string buf, sRes;
+    std::stringstream ss(str);
+    while (ss >> buf)
+    {
+        if (buf.length() >= 5)
+            std::reverse(buf.begin(), buf.end());
+        sRes += buf;
+        sRes += ' ';
+    }
+    sRes.pop_back();
+    return sRes;
 
+}
 int main()
 {
     std::string str = "Welcome   ";
-    std::string sRes = spinWords(str);
+    std::string sRes = spinWords2(str);
     std::cout << sRes <<" Len:"<<str.length()<< std::endl;
 }
 
