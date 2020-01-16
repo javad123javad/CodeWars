@@ -3,6 +3,12 @@
 
 #include <iostream>
 
+std::string spinWords(const std::string& str)
+{
+    std::string tmpStr;
+    return "pizza";
+} 
+
 int main()
 {
     std::cout << "Hello World!\n";
