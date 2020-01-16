@@ -2,16 +2,42 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <sstream>
 
 std::string spinWords(const std::string& str)
 {
-    std::string tmpStr;
-    return "pizza";
+    std::vector<std::string> sString;
+    std::string buf, sRes;
+    std::stringstream ss(str);
+    while (ss >> buf)
+    {
+        sString.push_back(buf);
+    }
+    buf.clear();
+    for (auto word : sString)
+    {
+        if (word.length() >= 5)
+        {
+            int i = word.length() - 1;
+            while (i>= 0)
+                buf+= word.at(i--);
+            sRes += buf;
+            buf.clear();
+        }
+        else
+            sRes += word;
+        sRes += " ";
+        std::cout << sRes << std::endl;
+    }
+    return sRes;
 } 
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::string str = "Welcome   ";
+    std::string sRes = spinWords(str);
+    std::cout << sRes <<" Len:"<<str.length()<< std::endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
